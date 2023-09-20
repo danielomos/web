@@ -8,6 +8,9 @@ export default defineConfig({
   // comment this out if that isn't relevant for your project
   build: {
     outDir: "build",
+    },
+  server: {
+    host: '0.0.0.0',
   },
   plugins: [tsconfigPaths(), react()],
 });

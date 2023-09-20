@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>webDemo</title>
+    <title>RevoEnergy Africa</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#000000" />
     <meta
@@ -16,10 +16,18 @@
     />
     <link rel="icon" href="/favicon.ico" />
     <link rel="manifest" href="/manifest.json" />
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyKHvZ6if2IgSW2JKHjceizryJzBlF2eI&libraries=places"></script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div class="dhiwise-code" id="root"></div>
+    <script>
+      const apiKey = `${process.env.REACT_APP_GOOGLE_MAP_API_KEY}`;
+      const script = document.createElement('script');
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
+      script.async = true;
+      document.body.appendChild(script);
+    </script>
     <script type="module" src="/src/index.jsx"></script>
   </body>
 </html>

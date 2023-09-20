@@ -6,6 +6,5 @@ const API_URLS = { GET_STATION_NEARBY: `${COMMON_URL}near` };
 
 export const getStationNearby = (payload) =>
   apis.get(API_URLS.GET_STATION_NEARBY, {
-    ...payload,
-    params: { request: "10 ikosi road, lagos", ...payload?.params },
+    params: { request: payload.address, ...payload?.params }, // Use payload.address as the request parameter
   });
