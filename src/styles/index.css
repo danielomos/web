@@ -183,3 +183,10 @@ ul li a{
   background: #6b6b6b;
   border-radius: 10px;
 }
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Center the spinner vertically in the viewport */
+}

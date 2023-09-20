@@ -2,13 +2,15 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "pages/Home";
 import NotFound from "pages/NotFound";
+import CustomLoadingSpinner from "components/Spinner"; // You'll need to implement this component
+
 const StationDetails = React.lazy(() => import("pages/StationDetails"));
 const NotFoundStation = React.lazy(() => import("pages/NotFoundStation"));
 const Stations = React.lazy(() => import("pages/Stations"));
 const Home1 = React.lazy(() => import("pages/Home1"));
 const ProjectRoutes = () => {
   return (
-    <React.Suspense fallback={<>Loading...</>}>
+<React.Suspense fallback={<CustomLoadingSpinner />}>
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />

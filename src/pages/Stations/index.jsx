@@ -55,7 +55,8 @@ const StationsPage = () => {
                           <Img
                             className="h-[63px] md:h-auto mt-2 object-cover w-[63px]"
                             alt="iconEleven"
-                            src="nearElement?.stationLogoUrl"
+                            // src="nearElement?.stationLogoUrl"
+                            src="images/img_icon11.png"
                           />
                         </div>
                         <div className="flex flex-col items-start justify-center w-[219px]">
@@ -75,7 +76,7 @@ const StationsPage = () => {
                             className="text-[22px] text-center text-gray-600 sm:text-lg md:text-xl w-auto"
                             size="txtNunitoRegular22"
                           >
-                            {nearElement?.distance}
+                            {nearElement?.distance} km Away
                           </Text>
                         </div>
                       </div>

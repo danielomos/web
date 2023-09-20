@@ -1,10 +1,34 @@
 import React from "react";
-
+import { useLocation } from "react-router-dom";
 import { Button, Img, Input, Line, List, Text } from "components";
 import Footer from "components/Footer";
 import Header from "components/Header";
 
+
 const StationDetailsPage = () => {
+  // Access the location state to get the stationId
+  const location = useLocation();
+  const stationId = location.state ? location.state.stationId : null;
+
+  // Function to construct the WhatsApp message
+  const constructWhatsAppMessage = () => {
+    // Check if stationId exists
+    if (stationId) {
+      // Replace '1111111111' with the actual WhatsApp phone number
+      const phoneNumber = '08152290374';
+      const message = `Hi, I'm interested in station ID ${stationId}. Can you provide more information?`;
+
+      // Encode the message for a URL
+      const encodedMessage = encodeURIComponent(message);
+
+      // Construct the WhatsApp URL
+      const whatsappURL = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
+
+      // Redirect to WhatsApp
+      window.location.href = whatsappURL;
+    }
+  };
+
   return (
     <>
       <div className="bg-white-A700 flex flex-col font-poppins gap-2.5 items-center justify-center mx-auto w-auto sm:w-full md:w-full">
@@ -78,7 +102,7 @@ const StationDetailsPage = () => {
                         className="text-gray-900_01 text-xl w-auto"
                         size="txtNunitoRegular20"
                       >
-                        San Francisco, CA{" "}
+                        08100000000{" "}
                       </Text>
                     </div>
                   </div>
@@ -107,15 +131,19 @@ const StationDetailsPage = () => {
                     Enjoy the convenience of RevoEnrgy Delivery Service
                   </Text>
                 </div>
-                <Button
-                  className="cursor-pointer font-bold leading-[normal] min-w-[428px] sm:min-w-full text-center text-lg"
-                  shape="round"
-                  color="deep_orange_600"
-                  size="xs"
-                  variant="fill"
-                >
-                  Order Gas
-                </Button>
+                 {/* WhatsApp Button */}
+        {stationId && (
+          <Button
+            className="cursor-pointer font-bold leading-[normal] min-w-[428px] sm:min-w-full text-center text-lg"
+            shape="round"
+            color="deep_orange_600"
+            size="xs"
+            variant="fill"
+            onClick={constructWhatsAppMessage}
+          >
+            Order Gas on WhatsApp
+          </Button>
+        )}
               </div>
             </div>
           </div>

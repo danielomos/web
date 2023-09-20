@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 
@@ -8,6 +8,22 @@ import Header from "components/Header";
 
 const Home1Page = () => {
   const navigate = useNavigate();
+  const addressInputRef = useRef(null);
+  const [enteredAddress, setEnteredAddress] = useState(""); // State to store entered address
+
+  useEffect(() => {
+    if (addressInputRef.current) {
+      const autocomplete = new window.google.maps.places.Autocomplete(
+        addressInputRef.current
+      );
+
+      autocomplete.addListener("place_changed", () => {
+        const place = autocomplete.getPlace();
+        const formattedAddress = place.formatted_address || "";
+        setEnteredAddress(formattedAddress); // Update the entered address state
+      });
+    }
+  }, []);
 
   return (
     <>
@@ -54,6 +70,7 @@ const Home1Page = () => {
                     placeholder="Enter Your address"
                     className="leading-[normal] lowercase p-0 placeholder:text-gray-600 text-left text-xl w-full"
                     wrapClassName="border border-blue_gray-100 border-solid w-full"
+                    ref={addressInputRef}
                     shape="round"
                     color="white_A700"
                     size="xs"
@@ -63,7 +80,7 @@ const Home1Page = () => {
                     className="common-pointer cursor-pointer font-bold leading-[normal] min-w-[235px] text-center text-lg"
                     onClick={() =>
                       navigate("/stations", {
-                        state: { address: "10 ikosi road, lagos" },
+                        state: { address: enteredAddress }, // Pass the entered address
                       })
                     }
                     shape="round"
