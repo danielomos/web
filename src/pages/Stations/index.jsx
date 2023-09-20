@@ -86,7 +86,10 @@ const StationsPage = () => {
                           size="txtNunitoBold30"
                           onClick={() =>
                             navigate("/stationdetails", {
-                              state: { stationId: nearElement?.id },
+                              state: {
+                                stationId: nearElement?.id,
+                                customerAddress: location?.state?.address,
+                              },
                             })
                           }
                         >
